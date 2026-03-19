@@ -1,0 +1,89 @@
+const express = require('express');
+const router = express.Router();
+
+// Exemple simple pour GitHub OAuth (à compléter avec client id/secret)
+router.get('/github', (req, res) => {
+  res.redirect(`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&scope=repo,user`);
+});
+
+module.exports = router;
+const express = require('express');
+const router = express.Router();
+const Sponsor = require('../models/Sponsor');
+
+// Ajouter un sponsor Awin
+router.post('/', async (req, res) => {import React, { useEffect, useState } from 'react';
+import SponsorCard from './SponsorCard';
+import axios from 'axios';
+
+function Dashboard({ user }) {
+  const [sponsors, setSponsors] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/sponsors')
+      .then(res => setSponsors(res.data))
+      .catch(err => console.log(err));
+  }, []);
+
+  return (import React from 'react';
+
+function SponsorCard({ sponsor }) {
+  return (
+    <div style={{border:'1px solid gray', margin:'10px', padding:'10px'}}>
+      <h3>{sponsor.name}</h3>
+      <a href={sponsor.url} target="_blank" rel="noreferrer">{sponsor.url}</a>
+      <p>Commission: {sponsor.commission}€</p>
+    </div>
+  );
+}
+
+export default SponsorCard;
+    <div>
+      <h1>Bienvenue {user.login}</h1>
+      <h2>Vos sponsors Awin</h2>
+      <div>
+        {sponsors.map(s => <SponsorCard key={s._id} sponsor={s} />)}
+      </div>
+    </div>
+  );
+}
+
+export default Dashboard;
+
+    const { name, url, commission } = req.body;
+    const sponsor = new Sponsor({ name, url, commission });
+    await sponsor.save();
+    res.json(sponsor);
+});import React from 'react';
+import Dashboard from './components/Dashboard';
+import Login from './components/Login';
+
+function App() {
+  const [user, setUser] = React.useState(null);
+
+  return (
+    <div>
+      {user ? <Dashboard user={user} /> : <Login setUser={setUser} />}
+    </div>
+  );
+}
+
+export default App;
+
+
+// Lister tous les sponsors
+router.get('/', async (req, res) => {
+    const sponsors = await Sponsor.find();
+    res.json(sponsors);const mongoose = require('mongoose');
+
+const SponsorSchema = new mongoose.Schema({
+    name: String,
+    url: String,
+    commission: Number
+});
+
+module.exports = mongoose.model('Sponsor', SponsorSchema);
+
+});
+
+module.exports = router;
