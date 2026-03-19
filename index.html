@@ -1,0 +1,36 @@
+awin-github-dashboard/
+│
+├─ backend/
+│   ├─ server.js
+│   ├─ routes/
+│   │   ├─ auth.js
+│   │   └─ sponsors.js
+│   └─ models/
+│       └─ Sponsor.js
+│
+├─ frontend/
+│   ├─ src/
+│   │   ├─ App.js
+│   │   ├─ components/
+│   │   │   ├─ Dashboard.js
+│   │   │   ├─ Login.js
+│   │   │   └─ SponsorCard.js
+│   │   └─ services/
+│   │       └─ api.js
+│   └─ package.json
+│
+└─ README.md
+const express = require('express');
+const cors = require('cors');
+const authRoutes = require('./routes/auth');
+const sponsorRoutes = require('./routes/sponsors');
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+app.use('/api/auth', authRoutes);
+app.use('/api/sponsors', sponsorRoutes);
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
